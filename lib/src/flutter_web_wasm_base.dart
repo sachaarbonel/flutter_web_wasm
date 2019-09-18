@@ -1,6 +1,9 @@
-// TODO: Put public facing types in this file.
+@JS()
+library pkg.flutter_web_wasm;
 
-/// Checks if you are awesome. Spoiler: you are.
-class Awesome {
-  bool get isAwesome => true;
-}
+import "package:js/js.dart";
+
+/// tslint:disable
+@JS()
+external void greet();
+

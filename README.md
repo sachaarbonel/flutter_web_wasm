@@ -59,6 +59,13 @@ wasm-pack test --headless --firefox
 wasm-pack publish
 ```
 
+### Generate your dart bindings
+
+```
+rm -rf lib/src/flutter_web_wasm_base.dart
+dart_js_facade_gen pkg/flutter_web_wasm.d.ts | tee lib/src/flutter_web_wasm_base.dart
+```
+
 ## 🔋 Batteries Included
 
 * [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen) for communicating
