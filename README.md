@@ -53,17 +53,44 @@ wasm-pack build
 wasm-pack test --headless --firefox
 ```
 
+### Generate your dart bindings
+
+```
+rm -rf lib/src/flutter_web_wasm_base.dart
+dart_js_facade_gen pkg/flutter_web_wasm.d.ts | tee lib/src/flutter_web_wasm_base.dart
+```
+
 ### 🎁 Publish to NPM with `wasm-pack publish`
 
 ```
 wasm-pack publish
 ```
 
-### Generate your dart bindings
+### Add your depedency Flutter side
 
+In example/lib/web/index.html import your js library via script tag
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>example</title>
+</head>
+
+<body>
+  <script src="main.dart.js" type="application/javascript"></script>
+  <script src="https://unpkg.com/flutter-web-wasm@0.1.0/flutter_web_wasm.js"></script>  <!-- Import your freshly generated library from unpk cdn -->
+</body>
+
+</html>
 ```
-rm -rf lib/src/flutter_web_wasm_base.dart
-dart_js_facade_gen pkg/flutter_web_wasm.d.ts | tee lib/src/flutter_web_wasm_base.dart
+
+In your example/lib/main.dart import your library
+
+```dart
+import 'package:flutter_web_wasm/flutter_web_wasm.dart';
 ```
 
 ## 🔋 Batteries Included

@@ -1,6 +1,27 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-void main() => runApp(MyApp());
+import 'package:flutter/material.dart';
+import 'package:flutter_web_wasm/flutter_web_wasm.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart'
+    show debugDefaultTargetPlatformOverride;
+
+void _desktopInitHack() {
+  if (kIsWeb) return;
+
+  if (Platform.isMacOS) {
+    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+  } else if (Platform.isLinux || Platform.isWindows) {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+  } else if (Platform.isFuchsia) {
+    debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+  }
+}
+
+void main() {
+  _desktopInitHack();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

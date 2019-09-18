@@ -6,4 +6,3 @@ import "package:js/js.dart";
 /// tslint:disable
 @JS()
 external void greet();
-
