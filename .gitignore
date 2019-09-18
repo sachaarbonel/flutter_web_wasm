@@ -1,3 +1,9 @@
+/target
+**/*.rs.bk
+Cargo.lock
+bin/
+pkg/
+wasm-pack.log
 # Files and directories created by pub
 .dart_tool/
 .packages
