@@ -1,26 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_web_wasm/flutter_web_wasm.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/foundation.dart'
-    show debugDefaultTargetPlatformOverride;
 
-void _desktopInitHack() {
-  if (kIsWeb) return;
-
-  if (Platform.isMacOS) {
-    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-  } else if (Platform.isLinux || Platform.isWindows) {
-    debugDefaultTargetPlatformOverride = TargetPlatform.android;
-  } else if (Platform.isFuchsia) {
-    debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-  }
+Future run() async {
+  await init();
+  add(4, 2);
 }
 
-void main() {
-  _desktopInitHack();
+Future main() async {
   runApp(MyApp());
+  await run();
 }
 
 class MyApp extends StatelessWidget {
